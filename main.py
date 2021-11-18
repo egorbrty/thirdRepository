@@ -20,7 +20,6 @@ class MyWidget(QMainWindow):
             self.comboBox.addItem(i[0])
 
         self.comboBox.addItem('qwerty')
-
         self.run(names[0][0])
 
         self.comboBox.currentIndexChanged.connect(self.run)
