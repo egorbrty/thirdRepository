@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('ui.ui', self)  # Загружаем дизайн
+        uic.loadUi('main.ui', self)  # Загружаем дизайн
 
         self.con = sqlite3.connect("coffee.sqlite")
 
