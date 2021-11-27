@@ -1,9 +1,10 @@
 import sys
 import sqlite3
 
-from PyQt5 import uic  # Импортируем uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QInputDialog
 import traceback
+from ui_file import Ui_Form as first
+from addEditCoffeeForm import Ui_Form as second
 
 
 def excepthook(exc_type, exc_value, exc_tb):
@@ -14,11 +15,10 @@ def excepthook(exc_type, exc_value, exc_tb):
 sys.excepthook = excepthook
 
 
-class changeDB(QDialog):
+class changeDB(QDialog, second):
     def __init__(self, parent):
         super().__init__(parent)
-        uic.loadUi('addEditCoffeeForm.ui', self)  # Загружаем дизайн
-
+        self.setupUi(self)
         names = ex.cur.execute(f"""SELECT name FROM coffee""").fetchall()
 
         for i in names:
@@ -112,12 +112,11 @@ class changeDB(QDialog):
         self.spinBox_4.setValue(parameters[8])
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, first):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)  # Загружаем дизайн
-
-        self.con = sqlite3.connect("coffee.sqlite")
+        self.setupUi(self)
+        self.con = sqlite3.connect("data/coffee.sqlite")
 
         self.cur = self.con.cursor()
 
@@ -161,7 +160,6 @@ class MyWidget(QMainWindow):
         window = changeDB(self)
         print('done')
         window.exec()
-
 
 
 if __name__ == '__main__':
