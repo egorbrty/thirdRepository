@@ -2,17 +2,9 @@ import sys
 import sqlite3
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QInputDialog
-import traceback
+
 from ui_file import Ui_Form as first
 from addEditCoffeeForm import Ui_Form as second
-
-
-def excepthook(exc_type, exc_value, exc_tb):
-    tb = "".join(traceback.format_exception(exc_type, exc_value, exc_tb))
-    print(tb)
-
-
-sys.excepthook = excepthook
 
 
 class changeDB(QDialog, second):
